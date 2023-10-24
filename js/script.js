@@ -110,6 +110,7 @@ let mainOperators = [
 ];
 mainOperators.forEach((element) => {
   element.addEventListener("click", () => {
+    result = false;
     let input = document.getElementById("number").value;
     let eOperator = element.getAttribute("operator");
     if (a == 0) {
