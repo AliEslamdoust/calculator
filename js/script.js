@@ -78,9 +78,9 @@ submit.addEventListener("click", () => {
   showNumbers = [];
   try {
     showNumbers.push(result);
-    preAnswer.innerHTML = result;
+    input.value = result;
   } catch (error) {
-    preAnswer.innerHTML = "Error";
+    input.value = "Error";
   }
 
   preAnswer.innerHTML = "";
