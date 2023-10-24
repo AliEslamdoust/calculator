@@ -1,211 +1,103 @@
-let buttons = [
-  document.getElementById("per"),
-  document.getElementById("ce"),
-  document.getElementById("c"),
-  document.getElementById("del"),
-  document.getElementById("rev"),
-  document.getElementById("pow"),
-  document.getElementById("rad"),
-  document.getElementById("div"),
-  document.getElementById("mul"),
-  document.getElementById("sub"),
-  document.getElementById("sum"),
-  document.getElementById("sbm"),
-  document.getElementById("dot"),
-  document.getElementById("submit"),
-];
+let back = document.getElementById("del");
+let clear = document.querySelectorAll(".ce");
 let numerals = document.querySelectorAll(".numerals");
-let value = "";
-let numbers = [];
-// type numbers
+let operatos = document.querySelectorAll(".operator");
+let submit = document.getElementById("submit");
+let preNumber = document.getElementById("preNum");
+let input = document.getElementById("number");
 let preAnswer = document.getElementById("preAnswer");
-let preAnswerIcon = '&nbsp;<span class="preAnswerOpr"></span>&nbsp;';
+let showNumbers = [];
+let numbers = [];
+
+// add numbers
 numerals.forEach((element) => {
   element.addEventListener("click", () => {
-    let input = document.getElementById("number").value;
-    numbers.push(input + element.innerHTML);
-    document.getElementById("number").value = numbers[numbers.length - 1];
-    if (a != 0) {
-      let input = document.getElementById("number").value;
-      b = input;
-      mainOperators.forEach((elem) => {
-        switch (currentOperator) {
-          case "x":
-            preAnswerText = a * b;
-            preAnswer.innerHTML = preAnswerIcon + preAnswerText;
-            break;
-          case "-":
-            preAnswerText = a - b;
-            preAnswer.innerHTML = preAnswerIcon + preAnswerText;
-            break;
-          case "+":
-            preAnswerText = Number(a) + Number(b);
-            preAnswer.innerHTML = preAnswerIcon + preAnswerText;
-            break;
-          case "%":
-            preAnswerText = a % b;
-            preAnswer.innerHTML = preAnswerIcon + preAnswerText;
-            break;
-          case "/":
-            preAnswerText = a / b;
-            preAnswer.innerHTML = preAnswerIcon + preAnswerText;
-            break;
-          default:
-            preAnswerText = 0;
-            preAnswer.innerHTML = "";
-            break;
-        }
-      });
-    }
-    if (result == true) {
-      deleteAll();
-      result = false;
-      numbers.push(element.innerHTML);
-      document.getElementById("number").value = numbers[numbers.length - 1];
-    }
+    showNumbers.push(element.innerHTML);
+    input.value = showNumbers.join("");
+    preAnswerF();
   });
 });
-// delete using c and ce btns
-let delAll = [document.getElementById("ce"), document.getElementById("c")];
-delAll.forEach((element) => {
-  element.addEventListener("click", () => {
-    deleteAll();
-  });
-});
-function deleteAll() {
-  document.getElementById("number").value = "";
-  preNum.innerHTML = "";
-  preAnswer.innerHTML = "";
-  numbers = [];
-  a = 0;
-  b = 0;
-}
-//  delete the last number
-let del = document.getElementById("del");
-del.addEventListener("click", () => {
-  let lastNum = numbers[numbers.length - 1];
-  console.log(lastNum);
-  numbers = [];
-  lastNum = Math.floor(lastNum / 10);
-  numbers.push(lastNum);
-  document.getElementById("number").value = numbers[numbers.length - 1];
-  preNum.innerHTML = "";
-  preAnswer.innerHTML = "";
-
-  result = false;
-});
-// main operations
-
-let a = 0;
-let b = 0;
-let preNum = document.getElementById("preNum");
-let preAnswerText;
-let currentOperator;
-let mainOperators = [
-  document.getElementById("div"),
-  document.getElementById("mul"),
-  document.getElementById("sub"),
-  document.getElementById("sum"),
-  document.getElementById("per"),
-];
-mainOperators.forEach((element) => {
-  element.addEventListener("click", () => {
-    result = false;
-    let input = document.getElementById("number").value;
-    let eOperator = element.getAttribute("operator");
-    if (a == 0) {
-      numbers = [];
-      switch (eOperator) {
-        case "x":
-          a = input;
-          preNum.innerHTML = a + " " + eOperator;
-          currentOperator = eOperator;
-          document.getElementById("number").value = "";
-          break;
-        case "+":
-          a = input;
-          preNum.innerHTML = a + " " + eOperator;
-          currentOperator = eOperator;
-          document.getElementById("number").value = "";
-          break;
-        case "/":
-          a = input;
-          preNum.innerHTML = a + " " + eOperator;
-          currentOperator = eOperator;
-          document.getElementById("number").value = "";
-          break;
-        case "-":
-          a = input;
-          preNum.innerHTML = a + " " + eOperator;
-          currentOperator = eOperator;
-          document.getElementById("number").value = "";
-          break;
-        case "%":
-          a = input;
-          preNum.innerHTML = a + " " + eOperator;
-          currentOperator = eOperator;
-          document.getElementById("number").value = "";
-          break;
+function preAnswerF() {
+  if (showNumbers.length > 0) {
+    operatos.forEach((elem) => {
+      let eOperator = elem.getAttribute("operator");
+      numbers = [...showNumbers];
+      if (numbers[numbers.length - 1] == eOperator) {
+        numbers.pop();
       }
-    } else {
+    });
+    try {
+      let result = eval(numbers.join(""));
+      preAnswer.innerHTML = result;
+    } catch (error) {
+      preAnswer.innerHTML = "Error";
     }
+  } else {
+    preAnswer.innerHTML = "";
+  }
+}
+
+// add operations to the input
+operatos.forEach((element) => {
+  element.addEventListener("click", () => {
+    let eOperator = element.getAttribute("operator");
+    switch (eOperator) {
+      case "+":
+        showNumbers.push("+");
+        break;
+      case "-":
+        showNumbers.push("-");
+        break;
+      case "x":
+        showNumbers.push("*");
+        break;
+      case "/":
+        showNumbers.push("/");
+        break;
+      case "+/-":
+        showNumbers.unshift("(");
+        showNumbers.push(")");
+        showNumbers.unshift("-");
+        break;
+    }
+    input.value = showNumbers.join("");
   });
 });
-// preAnswer show
-let inputNumber = document.getElementById("number");
-inputNumber.addEventListener("input", () => {});
-
-// equal button
-let result = false;
-let submit = document.getElementById("submit");
+// show result
+let equal = false;
 submit.addEventListener("click", () => {
-  if (a != 0) {
-    numbers.push(Number(preAnswerText));
-    document.getElementById("number").value = numbers[numbers.length - 1];
-    preAnswer.innerHTML = "";
-    preNum.innerHTML = a + " " + currentOperator + " " + b + preAnswerIcon;
-    result = true;
-    a = 0;
-    b = 0;
+  operatos.forEach((elem) => {
+    let eOperator = elem.getAttribute("operator");
+    if (numbers[numbers.length - 1] == eOperator) {
+      numbers.pop();
+    }
+  });
+  let result = eval(showNumbers.join(""));
+  preNumber.innerHTML =
+    showNumbers.join("") + '&nbsp;<span class="preAnswerOpr"></span>&nbsp;';
+  showNumbers = [];
+  try {
+    showNumbers.push(result);
+    preAnswer.innerHTML = result;
+  } catch (error) {
+    preAnswer.innerHTML = "Error";
   }
+
+  preAnswer.innerHTML = "";
+});
+// delete all using c and ce
+clear.forEach((element) => {
+  element.addEventListener("click", () => {
+    preAnswer.innerHTML = "";
+    showNumbers = [];
+    input.value = showNumbers.join("");
+    preNumber.innerHTML = "";
+  });
 });
 
-// other operators
-let reverse = document.getElementById("rev");
-let power = document.getElementById("pow");
-let radikal = document.getElementById("rad");
-let mul_1 = document.getElementById("sbm");
-reverse.addEventListener("click", () => {
-  preAnswer.innerHTML = "";
-  result = true;
-  a = 0;
-  b = 0;
-  let input = document.getElementById("number").value;
-  preNum.innerHTML = `1 / ${input}`;
-  document.getElementById("number").value = Number(1 / input);
-});
-power.addEventListener("click", () => {
-  preAnswer.innerHTML = "";
-  result = true;
-  a = 0;
-  b = 0;
-  let input = document.getElementById("number").value;
-  preNum.innerHTML = `${input} <sup>2</sup>`;
-  document.getElementById("number").value = Number(input * input);
-});
-radikal.addEventListener("click", () => {
-  preAnswer.innerHTML = "";
-  result = true;
-  a = 0;
-  b = 0;
-  let input = document.getElementById("number").value;
-  preNum.innerHTML = `2rad ${input}`;
-  document.getElementById("number").value = Math.sqrt(input);
-});
-mul_1.addEventListener("click", () => {
-  preAnswer.innerHTML = "";
-  result = false;
-  let input = document.getElementById("number").value;
-  preNum.innerHTML = "";
-  document.getElementById("number").value = input * -1;
+// delete one using backspace
+back.addEventListener("click", () => {
+  showNumbers.pop();
+  input.value = showNumbers.join("");
+  preAnswerF();
 });

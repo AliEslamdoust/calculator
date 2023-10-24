@@ -227,3 +227,14 @@ sup {
     }
   }
 }
+a.link{
+  text-decoration: none;
+  font-size: 16px;
+  color: #000;
+  margin: 2rem;
+  display: block;
+  font-family: $main-font;
+  &:hover{
+    text-decoration: underline;
+  }
+}
