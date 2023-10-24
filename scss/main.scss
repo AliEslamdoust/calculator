@@ -1,0 +1,229 @@
+@font-face {
+  font-family: segMDL;
+  src: url(../fonts/latest.woff2);
+}
+@font-face {
+  font-family: segMDLicon;
+  src: url(../fonts/SegMDL2.woff);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+$main-dark: #202020;
+$opr-btn-dark: #323232;
+$opr-btn-dark-hover: #3b3b3b;
+$btn-dark: #3b3b3b;
+$btn-dark-hover: #323232;
+$main: #f3f3f3;
+$opr-btn: #f9f9f9;
+$opr-btn-hover: #f4f4f4;
+$btn: #ffffff;
+$btn-hover: #f9f9f9;
+$submit-btn: #729900;
+$submit-btn-hover: #7fa219;
+$submit-btn-dark: #dfff80;
+$text: #000000;
+$text-disabled: #9a9a9a;
+$icon-font: segMDLicon, segMDL;
+$main-font: segMDL;
+div.calcContainer {
+  position: absolute;
+  top: calc(50% - 266px);
+  left: calc(50% - 160px);
+  width: 320px;
+  height: 532px;
+  background-color: $main-dark;
+  position: flex;
+  flex-direction: column;
+  padding: 4px;
+  box-shadow: 5px 5px 20px rgb(138, 138, 138);
+  > div.calcTop {
+    width: 100%;
+    height: 210px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 37.5px 37.5px 1fr;
+    > div.nBtns {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    > div.menuContainer {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    > div.answerContainer {
+      grid-column: 1;
+      grid-row: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: $icon-font;
+      > div {
+        color: #b1b1b1;
+        width: 90%;
+        font-family: inherit;
+        font-size: 16px;
+        text-align: right;
+        > span.preAnswerOpr {
+          color: inherit;
+          font-family: inherit;
+          font-size: 10px;
+          text-align: right;
+          &::after {
+            content: "\E94E";
+            color: inherit;
+            font-family: inherit;
+            font-size: inherit;
+          }
+        }
+      }
+      > input {
+        background-color: transparent;
+        border: unset;
+        outline: unset;
+        color: #fff;
+        width: 90%;
+        font-size: 45px;
+        padding: 0.5rem 0;
+        text-align: right;
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+        }
+      }
+    }
+  }
+
+  > div.calcBottom {
+    width: 100%;
+    height: 314px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 2px;
+
+    > button {
+      border: unset;
+      border-radius: 5px;
+      color: #fff;
+      &.operator {
+        background-color: $opr-btn-dark;
+        font-family: $icon-font;
+        font-size: 12px;
+        &:hover {
+          background-color: $opr-btn-dark-hover;
+        }
+      }
+      &.numerals,
+      &.number-operator {
+        background-color: $btn-dark;
+        font-size: 20px;
+        font-family: $main-font;
+        &:hover {
+          background-color: $btn-dark-hover;
+        }
+      }
+      &.submit {
+        background-color: $submit-btn-dark;
+        font-size: 16px;
+        font-family: $icon-font;
+        color: #000;
+        &:hover {
+          background-color: $submit-btn-hover;
+        }
+      }
+      &#submit::after {
+        content: "\E94E";
+      }
+      &#mul::after {
+        content: "\E947";
+      }
+      &#sub::after {
+        content: "\E949";
+      }
+      &#sum::after {
+        content: "\E948";
+      }
+      &#div::after {
+        content: "\E94A";
+      }
+      &#per::after {
+        content: "\E94C";
+      }
+      &#ce::after {
+        content: "CE";
+      }
+      &#c::after {
+        content: "C";
+      }
+      &#del::after {
+        content: "\EB96";
+      }
+      > span {
+        font-size: inherit;
+        color: inherit;
+        font-family: inherit;
+
+        &::after {
+          font-size: inherit;
+          color: inherit;
+          font-family: inherit;
+        }
+      }
+    }
+  }
+}
+
+$i: 1;
+@while $i <=4 {
+  .col-#{$i} {
+    grid-column: $i;
+  }
+  $i: $i + 1;
+}
+$k: -1;
+@while $k <=6 {
+  .row-end-#{$k} {
+    grid-row-end: $k;
+  }
+  $k: $k + 1;
+}
+$l: -1;
+@while $l <=6 {
+  .row-start-#{$l} {
+    grid-row-start: $l;
+  }
+  $l: $l + 1;
+}
+$j: 1;
+@while $j <=6 {
+  .row-#{$j} {
+    grid-row: $j;
+  }
+  $j: $j + 1;
+}
+sup {
+  font-size: 12px;
+}
+.copyRight{
+  position: fixed;
+  bottom: 10px;
+  left: 20px;
+  font-family: $main-font;
+  color: $main-dark;
+  font-size: 16px;
+  font-weight: 900;
+  > a{
+    text-decoration: none;
+    color: $submit-btn;
+    font-size: 18px;
+    &:hover{
+      text-decoration: underline;
+      color: $submit-btn-hover;
+    }
+  }
+}
