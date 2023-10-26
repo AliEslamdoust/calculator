@@ -175,6 +175,7 @@ function correctPar() {
 
 // warn to close paranthes
 let rightpr = document.getElementById("closepr");
+let leftpr = document.getElementById("openpr");
 function checkPar() {
   let lastStr = `${finalNumbers[finalNumbers.length - 1]}`;
   let leftCount = 0;
@@ -186,9 +187,12 @@ function checkPar() {
       rightCount++;
     }
   }
-  if (leftCount != rightCount) {
+  if (leftCount > rightCount) {
     rightpr.classList.add("parRed");
-  } else {
+  } else if (leftCount < rightCount) {
+    leftpr.classList.add("parRed");
+  } else if (leftCount == rightCount) {
+    leftpr.classList.remove("parRed");
     rightpr.classList.remove("parRed");
   }
 }
