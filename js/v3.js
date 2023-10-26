@@ -128,7 +128,9 @@ operators.forEach((element) => {
         input.value += "%";
         break;
       case "*x":
-        input.value += "**2";
+        input.value = Math.pow(finalNumbers[finalNumbers.length - 1], 2);
+        finalNumbers = [];
+        finalNumbers.push(input.value);
         equalBtn();
         break;
       case "rad2":
