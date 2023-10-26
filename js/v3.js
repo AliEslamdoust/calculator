@@ -164,7 +164,10 @@ operators.forEach((element) => {
 // correct x after ()
 function correctPar() {
   let correctionWord = `${finalNumbers[finalNumbers.length - 1]}`;
-  if (correctionWord[correctionWord.length - 2] == ")") {
+  if (
+    correctionWord[correctionWord.length - 2] == ")" &&
+    correctionWord[correctionWord.length - 1] != ")"
+  ) {
     let lastWord = correctionWord[correctionWord.length - 1];
     let lastWords = [...correctionWord];
     lastWords.pop();
