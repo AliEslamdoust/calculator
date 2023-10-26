@@ -105,6 +105,7 @@ div.calcContainer {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(6, 1fr);
     gap: 2px;
+    position: relative;
 
     > button {
       border: unset;
@@ -209,7 +210,7 @@ $j: 1;
 sup {
   font-size: 12px;
 }
-.copyRight{
+.copyRight {
   position: fixed;
   bottom: 10px;
   left: 20px;
@@ -217,24 +218,41 @@ sup {
   color: $main-dark;
   font-size: 16px;
   font-weight: 900;
-  > a{
+  > a {
     text-decoration: none;
     color: $submit-btn;
     font-size: 18px;
-    &:hover{
+    &:hover {
       text-decoration: underline;
       color: $submit-btn-hover;
     }
   }
 }
-a.link{
+a.link {
   text-decoration: none;
   font-size: 16px;
   color: #000;
   margin: 2rem;
-  display: block;
+  display: inline-block;
   font-family: $main-font;
-  &:hover{
+  &:hover {
     text-decoration: underline;
   }
+}
+button.absolutes {
+  position: absolute;
+  top: -45px;
+  cursor: pointer;
+  width: 20px !important;
+  height: 30px !important;
+  background-color: transparent !important;
+}
+button.abs-left {
+  left: calc(12.5% - 10px);
+}
+button.abs-right {
+  left: calc(37.5% - 10px);
+}
+.parRed {
+  color: red !important;
 }

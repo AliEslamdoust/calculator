@@ -3,47 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Calculator v3</title>
     <link rel="stylesheet" href="./scss/main.css" />
   </head>
   <body>
     <a href="./v1/" class="link">First Version</a>
+    <a href="./v2/" class="link">Second Version</a>
     <div class="calcContainer">
       <div class="calcTop">
         <div class="nBtns"></div>
         <div class="menuContainer"></div>
         <div class="answerContainer">
           <div id="preNum"></div>
-          <input type="number" id="number" maxlength="9" />
+          <input type="text" id="number" maxlength="16" />
           <div id="preAnswer"></div>
         </div>
       </div>
       <div class="calcBottom">
+        <button class="numerals absolutes abs-left">(</button>
+        <button class="numerals absolutes abs-right" id="closepr">)</button>
         <button class="operator col-1 row-1" id="per" operator="%">
           <span></span>
         </button>
-        <button class="operator col-2 row-1" id="ce"><span></span></button>
-        <button class="operator col-3 row-1" id="c"><span></span></button>
-        <button class="operator col-3 row-6" id="del"><span></span></button>
+        <button class="operator col-2 row-1 ce">CE</button>
+        <button class="operator col-3 row-1 ce">C</button>
+        <button class="operator col-4 row-1" id="del"><span></span></button>
         <button class="operator col-1 row-2" id="rev" operator="1/x">
-          <span>1/x</span>
+          <span><sup>1</sup>/<sub>&Xscr;</sub></span>
         </button>
         <button class="operator col-2 row-2" id="pow" operator="*x">
-          <span>x^2</span>
+          <span>&Xscr;<sup>2</sup></span>
         </button>
-        <button class="operator col-3 row-2" id="rad">
-          <span>rad2 x</span>
+        <button class="operator col-3 row-2" id="rad" operator="rad2">
+          <span>
+          &radic;&Xscr;
+          </span>
         </button>
-        <button class="operator col-4 row-1" id="div" operator="/">
+        <button class="operator col-4 row-2" id="div" operator="/">
           <span></span>
         </button>
-        <button class="operator col-4 row-2" id="mul" operator="x">
+        <button class="operator col-4 row-3" id="mul" operator="x">
           <span></span>
         </button>
-        <button class="operator col-4 row-3" id="sub" operator="-">
+        <button class="operator col-4 row-4" id="sub" operator="-">
           <span></span>
         </button>
-        <button class="operator col-4 row-4" id="sum" operator="+">
+        <button class="operator col-4 row-5" id="sum" operator="+">
           <span></span>
         </button>
         <button class="numerals col-1 row-3">7</button>
@@ -56,7 +61,8 @@
         <button class="numerals col-2 row-5">2</button>
         <button class="numerals col-3 row-5">3</button>
         <button class="numerals col-2 row-6">0</button>
-        <button class="number-operator col-1 row-6" id="sbm" operator="*-1">
+        <button class="numerals col-3 row-6" id="dot">.</button>
+        <button class="number-operator operator col-1 row-6" id="sbm" operator="+/-">
           <span>+/-</span>
         </button>
         <!-- <button class="number-operator col-3 row-6" id="dot">
@@ -64,7 +70,7 @@
         </button> -->
         <button
           type="submit"
-          class="submit col-4 row-end--1 row-start-5"
+          class="submit col-4 row-6"
           id="submit"
         >
           <span></span>
@@ -75,6 +81,6 @@
       Designed By&nbsp;
       <a href="https://aliesi3410.githun.io/cv">Ali Eslamdoust</a>
     </p>
-    <script src="./js/main.js"></script>
+    <script src="../js/v3.js"></script>
   </body>
 </html>

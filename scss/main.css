@@ -72,7 +72,8 @@ div.calcContainer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(6, 1fr);
-    gap: 2px; }
+    gap: 2px;
+    position: relative; }
     div.calcContainer > div.calcBottom > button {
       border: unset;
       border-radius: 5px;
@@ -225,9 +226,26 @@ a.link {
   font-size: 16px;
   color: #000;
   margin: 2rem;
-  display: block;
+  display: inline-block;
   font-family: segMDL; }
   a.link:hover {
     text-decoration: underline; }
+
+button.absolutes {
+  position: absolute;
+  top: -45px;
+  cursor: pointer;
+  width: 20px !important;
+  height: 30px !important;
+  background-color: transparent !important; }
+
+button.abs-left {
+  left: calc(12.5% - 10px); }
+
+button.abs-right {
+  left: calc(37.5% - 10px); }
+
+.parRed {
+  color: red !important; }
 
 /*# sourceMappingURL=main.css.map */
