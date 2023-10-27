@@ -165,8 +165,10 @@ operators.forEach((element) => {
 function correctPar() {
   let correctionWord = `${finalNumbers[finalNumbers.length - 1]}`;
   if (
-    correctionWord[correctionWord.length - 2] == ")" &&
-    correctionWord[correctionWord.length - 1] != ")"
+    (correctionWord[correctionWord.length - 2] == ")" &&
+      correctionWord[correctionWord.length - 1] != ")") ||
+    (correctionWord[correctionWord.length - 1] == "(" &&
+      isNaN(correctionWord[correctionWord.length - 2]) == false)
   ) {
     let lastWord = correctionWord[correctionWord.length - 1];
     let lastWords = [...correctionWord];
